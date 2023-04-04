@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { YOUTUBE_SEARCH_API } from "../utils/constant";
 import SearchVideoCard from "./SearchVideoCard";
 
 const SearchResults = () => {
   const [results, setResults] = useState([]);
+  const [searchParams] = useSearchParams();
   useEffect(() => {
     getResults();
-  }, []);
+  }, [searchParams]);
 
   const getResults = async () => {
-    const data = await fetch(YOUTUBE_SEARCH_API + "&q=iphone");
+    const data = await fetch(
+      YOUTUBE_SEARCH_API + "&q=" + searchParams.get("q")
+    );
     const json = await data.json();
-    console.log("video results", json.items);
     setResults(json.items);
   };
   return (

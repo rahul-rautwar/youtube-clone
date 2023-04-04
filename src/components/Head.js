@@ -67,29 +67,29 @@ const Head = () => {
               setShowSuggestions(true);
             }}
             onBlur={() => {
-              setShowSuggestions(false);
+              // setShowSuggestions(false);
             }}
           />
           <button className="px-5 py-2 border border-gray-400 rounded-r-full bg-gray-100">
             🔍
           </button>
         </div>
-        {showSuggestions && (
-          <div className="fixed bg-white py-2 px-2 w-[37rem] shadow-lg rounded-lg border border-gray-100">
-            <ul>
-              {suggestions.map((item) => {
-                return (
-                  <li
-                    key={item}
-                    className="py-2 px-3 shadow-sm hover:bg-gray-100"
-                  >
-                    {item}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        )}
+
+        <div
+          className={`${
+            !showSuggestions ? "hidden" : ""
+          } fixed bg-white py-2 px-2 w-[37rem] shadow-lg rounded-lg border border-gray-100`}
+        >
+          <ul>
+            {suggestions.map((item, index) => {
+              return (
+                <li className="py-2 px-3 shadow-sm hover:bg-gray-100">
+                  <a href={`/results?q=` + item}>{item}</a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
       <div className="col-span-1">
         <img
