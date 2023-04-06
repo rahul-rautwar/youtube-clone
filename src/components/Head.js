@@ -37,6 +37,12 @@ const Head = () => {
       })
     );
   };
+  const handleKeyDown = (event) => {
+    const keys = [event.key, event.code, event.keyCode];
+    if (keys.includes("Enter") || keys.includes("13")) {
+      window.location.href = `/results?q=` + searchQuery;
+    }
+  };
   return (
     <div className="grid grid-flow-col p-5 m-2 shadow-lg">
       <div className="flex col-span-1">
@@ -69,10 +75,16 @@ const Head = () => {
             onBlur={() => {
               // setShowSuggestions(false);
             }}
+            onKeyDown={(ev) => {
+              handleKeyDown(ev);
+            }}
           />
-          <button className="px-5 py-2 border border-gray-400 rounded-r-full bg-gray-100">
+          <a
+            href={`/results?q=` + searchQuery}
+            className="px-5 py-2 border border-gray-400 rounded-r-full bg-gray-100"
+          >
             🔍
-          </button>
+          </a>
         </div>
 
         <div
@@ -83,8 +95,13 @@ const Head = () => {
           <ul>
             {suggestions.map((item, index) => {
               return (
-                <li className="py-2 px-3 shadow-sm hover:bg-gray-100">
-                  <a href={`/results?q=` + item}>{item}</a>
+                <li key={index} className="shadow-sm hover:bg-gray-100">
+                  <a
+                    className="w-full py-2 px-3  block"
+                    href={`/results?q=` + item}
+                  >
+                    {item}
+                  </a>
                 </li>
               );
             })}

@@ -19,8 +19,8 @@ const SearchResults = () => {
   };
   return (
     <div className="">
-      {results.map((it) => {
-        return <SearchVideoCard data={it} />;
+      {results.map((it, index) => {
+        return <SearchVideoCard key={index} data={it} />;
       })}
     </div>
   );
