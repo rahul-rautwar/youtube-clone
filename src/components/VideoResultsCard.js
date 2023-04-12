@@ -1,7 +1,7 @@
 import React from "react";
 
 const VideoResultsCard = ({ data }) => {
-  const { id, snippet } = data;
+  const { snippet } = data;
   return (
     <div className="p-2 m-2 w-full flex">
       <img
