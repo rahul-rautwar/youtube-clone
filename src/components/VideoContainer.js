@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { YOUTUBE_VIDEOS_API } from "../utils/constant";
+import { addVideos } from "../utils/videosSlice";
 import VideoCard from "./VideoCard";
 
 const VideoContainer = () => {
-  const [videos, setVideos] = useState([]);
+  const dispatch = useDispatch();
+  const videoList = useSelector((store) => store.videos.videos);
   useEffect(() => {
     getVideos();
   }, []);
@@ -12,11 +15,11 @@ const VideoContainer = () => {
   const getVideos = async () => {
     const data = await fetch(YOUTUBE_VIDEOS_API);
     const json = await data.json();
-    setVideos(json.items);
+    dispatch(addVideos(json.items));
   };
   return (
     <div className="flex flex-wrap">
-      {videos.map((video) => {
+      {videoList.map((video) => {
         return (
           <Link key={video.id} to={`/watch?v=` + video.id}>
             <VideoCard info={video} />

@@ -23,9 +23,9 @@ const ButtonList = () => {
   const getCategories = async () => {
     const data = await fetch(YOUTUBE_CATEGORIES);
     const json = await data.json();
-
     setList(json.items);
   };
+
   return (
     <div className="flex">
       {list.map((item, index) => {
@@ -34,7 +34,7 @@ const ButtonList = () => {
             <Button
               key={index}
               name={item?.snippet?.title}
-              channelId={item?.snippet?.channelId}
+              channelId={item?.id}
             />
           )
         );
