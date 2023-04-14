@@ -10,12 +10,15 @@ const tempList = [
   "Gaming",
   "Education",
   "Family",
+  "Trailers",
+  "Shorts",
+  "Thriller",
 ];
 const ButtonList = () => {
   const [list, setList] = useState([]);
   useEffect(() => {
     getCategories();
-  });
+  }, []);
 
   const getCategories = async () => {
     const data = await fetch(YOUTUBE_CATEGORIES);
