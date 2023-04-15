@@ -2,17 +2,16 @@ import React, { useEffect, useState } from "react";
 import { YOUTUBE_CATEGORIES } from "../utils/constant";
 import Button from "./Button";
 
-const tempList = [
+const tempCategoriesList = [
   "Music",
   "Sports",
-  "Movies",
-  "Comedy",
+  "People & Blogs",
+  "Autos & Vehicles",
   "Gaming",
-  "Education",
-  "Family",
-  "Trailers",
-  "Shorts",
-  "Thriller",
+  "Pets & Animals",
+  "Film & Animation",
+  "News & Politics",
+  "Entertainment",
 ];
 const ButtonList = () => {
   const [list, setList] = useState([]);
@@ -30,7 +29,7 @@ const ButtonList = () => {
     <div className="flex">
       {list.map((item, index) => {
         return (
-          tempList.includes(item?.snippet?.title) && (
+          tempCategoriesList.includes(item?.snippet?.title) && (
             <Button
               key={index}
               name={item?.snippet?.title}
